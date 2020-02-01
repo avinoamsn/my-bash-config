@@ -2,4 +2,6 @@
 !.gitignore
 !.gitconfig
 !.zshrc
+!.bashrc
 !.bash_aliases
+!.config/terminator
