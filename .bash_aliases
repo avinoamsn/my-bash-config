@@ -15,3 +15,7 @@ alias gpa='git push & git push staging master & git push production master && fg
 #alias cloud-docker='cd ~/ampsight/cloud-assessment-tool/; docker-compose up api postgres'
 alias cloud-start='cd ~/ampsight/cv2/frontend; npm start'
 alias cloud='cd ~/ampsight/cv2/frontend'
+
+# Python Django
+alias migrate='python manage.py migrate'
+alias runserver='python manage.py runserver'
