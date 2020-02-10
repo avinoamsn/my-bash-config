@@ -19,3 +19,4 @@ alias cloud='cd ~/ampsight/cv2/frontend'
 # Python Django
 alias migrate='python manage.py migrate'
 alias runserver='python manage.py runserver'
+alias createsuperuser='python manage.py createsuperuser'
