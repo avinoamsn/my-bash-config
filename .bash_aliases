@@ -20,3 +20,6 @@ alias cloud='cd ~/ampsight/cv2/frontend'
 alias migrate='python manage.py migrate'
 alias runserver='python manage.py runserver'
 alias createsuperuser='python manage.py createsuperuser'
+
+# Firebase
+alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
