@@ -17,6 +17,7 @@ alias cloud-start='cd ~/ampsight/cv2/frontend; npm start'
 alias cloud='cd ~/ampsight/cv2/frontend'
 
 # Python Django
+alias makemigrations='python manage.py makemigrations'
 alias migrate='python manage.py migrate'
 alias runserver='python manage.py runserver'
 alias createsuperuser='python manage.py createsuperuser'
