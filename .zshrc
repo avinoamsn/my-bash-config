@@ -102,6 +102,9 @@ source ~/.bash_aliases
 # docker on WSL
 export DOCKER_HOST=tcp://localhost:2375
 
+# WSL 2 networking host IP
+DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
+
 # load nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

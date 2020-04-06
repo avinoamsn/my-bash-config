@@ -21,6 +21,7 @@ alias makemigrations='python manage.py makemigrations'
 alias migrate='python manage.py migrate'
 alias runserver='python manage.py runserver'
 alias createsuperuser='python manage.py createsuperuser'
+alias loaddata='python manage.py loaddata' # pass in the data json as an arg
 
 # Firebase
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
