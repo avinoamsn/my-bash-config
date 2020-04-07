@@ -1,8 +1,8 @@
 # EXECUTABLES
 alias subl='"/c/Program Files/Sublime Text 3/sublime_text.exe"'
-alias vsc='"/c/Users/Avi/AppData/Local/Programs/Microsoft VS Code/Code.exe"'
 alias firefox='"/c/Program Files/Mozilla Firefox/firefox.exe"'
 alias ex='explorer.exe'
+alias c='code $(pwd -P)' # avoids vscode error where git diff gutters don't work in symlink'd dirs
 
 # GIT
 alias gs='git status'
