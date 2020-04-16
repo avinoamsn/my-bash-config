@@ -2,7 +2,7 @@
 alias subl='"/c/Program Files/Sublime Text 3/sublime_text.exe"'
 alias firefox='"/c/Program Files/Mozilla Firefox/firefox.exe"'
 alias ex='explorer.exe'
-alias c='code $(pwd -P)' # avoids vscode error where git diff gutters don't work in symlink'd dirs
+alias c='code $(pwd -P)' # avoids vscode bug where git diff gutters don't work in symlink'd dirs
 
 # GIT
 alias gs='git status'
@@ -21,7 +21,7 @@ alias makemigrations='python manage.py makemigrations'
 alias migrate='python manage.py migrate'
 alias runserver='python manage.py runserver'
 alias createsuperuser='python manage.py createsuperuser'
-alias loaddata='python manage.py loaddata' # pass in the data json as an arg
+alias loaddata='python manage.py loaddata' # append the fixture path to the command 
 
 # Firebase
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
