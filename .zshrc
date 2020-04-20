@@ -105,6 +105,11 @@ export DOCKER_HOST=tcp://localhost:2375
 # WSL 2 networking host IP
 DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
 
+# solarized dircolors
+if [ -f ~/.dir_colors ]; then
+  eval `dircolors ~/.dir_colors`
+fi
+
 # load nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -113,7 +118,7 @@ export NVM_DIR="$HOME/.nvm"
 # load pyenv
 export PATH="/home/avi/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 # start in home dir
-cd ~
+#cd ~
