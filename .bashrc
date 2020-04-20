@@ -105,11 +105,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f $HOME/.bash_aliases ]
-then
-	 . $HOME/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -121,24 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# for TextMate/Sublime Text interoperability through WSL (rmate)
-# what goes here? (TODO)
-
-# set up nvm
-
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# docker on WSL
-export DOCKER_HOST=tcp://localhost:2375
-
-# start zsh
-if [ -t 1 ]; then  
+# launch zsh at startup
+if [ -t 1 ]; then
   exec zsh
 fi
 
-# pyenv
-export PATH="/home/avi/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+
