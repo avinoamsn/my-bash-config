@@ -25,3 +25,4 @@ alias loaddata='python manage.py loaddata' # append the fixture path to the comm
 
 # Firebase
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
+alias activate='source env/bin/activate'
