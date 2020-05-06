@@ -16,13 +16,16 @@ alias gpa='git push & git push staging master & git push production master && fg
 alias cloud-start='cd ~/ampsight/cv2/frontend; npm start'
 alias cloud='cd ~/ampsight/cv2/frontend'
 
+# pipenv
+alias activate='source env/bin/activate'
+
 # Python Django
 alias makemigrations='python manage.py makemigrations'
 alias migrate='python manage.py migrate'
 alias runserver='python manage.py runserver'
 alias createsuperuser='python manage.py createsuperuser'
 alias loaddata='python manage.py loaddata' # append the fixture path to the command 
+alias start='activate; runserver'
 
 # Firebase
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
-alias activate='source env/bin/activate'
