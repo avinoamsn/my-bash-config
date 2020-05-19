@@ -24,6 +24,7 @@ alias activate='source env/bin/activate'
 
 # DJANGO
 alias py='python manage.py' # prepend to manage cmds
+alias collectstatic='py collectstatic'
 # serve
 alias runserver='py runserver'
 alias start='activate; runserver'
