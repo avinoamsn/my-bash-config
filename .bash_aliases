@@ -5,7 +5,8 @@ alias ex='explorer.exe'
 alias c='code $(pwd -P)' # avoids vscode bug where git diff gutters don't work in symlink'd dirs
 
 # GH PAGES
-alias portfoliodeploy=`git subtree push --prefix public origin gh-pages`
+#alias portfolio='git subtree push --prefix public origin gh-pages'
+alias portfolio='git push origin `git subtree split --prefix public master`:gh-pages --force' # https://stackoverflow.com/questions/33172857/how-do-i-force-a-subtree-push-to-overwrite-remote-changes
 
 # WPENGINE GIT
 alias gs='git status'
