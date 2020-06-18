@@ -17,19 +17,12 @@
 [plugins]
 [profiles]
   [[default]]
-    allow_bold = False
     background_color = "#002b36"
     copy_on_selection = True
     cursor_color = "#93a1a1"
+    cursor_shape = underline
+    font = MesloLGS NF 11
     foreground_color = "#93a1a1"
     palette = "#002b36:#dc322f:#859900:#b58900:#268bd2:#6c71c4:#2aa198:#93a1a1:#657b83:#dc322f:#859900:#b58900:#268bd2:#6c71c4:#2aa198:#fdf6e3"
     scrollback_infinite = True
-  [[Base16 Solarized Dark]]
-    allow_bold = False
-    background_color = "#002b36"
-    copy_on_selection = True
-    cursor_color = "#93a1a1"
-    foreground_color = "#93a1a1"
-    palette = "#002b36:#dc322f:#859900:#b58900:#268bd2:#6c71c4:#2aa198:#93a1a1:#657b83:#dc322f:#859900:#b58900:#268bd2:#6c71c4:#2aa198:#fdf6e3"
-    scrollback_infinite = True
-    scrollbar_position = hidden
+    use_system_font = False
