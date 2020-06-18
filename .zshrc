@@ -73,6 +73,7 @@ plugins=(
   git
   alias-finder
   chucknorris
+  osx
 )
 
 source $ZSH/oh-my-zsh.sh
