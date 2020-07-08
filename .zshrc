@@ -109,9 +109,6 @@ alias zshconfig="vim ~/.zshrc"
 # aliases from bash
 source ~/.bash_aliases
 
-# docker on WSL
-export DOCKER_HOST=tcp://localhost:2375
-
 # WSL 2 networking host IP
 DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
 
@@ -137,8 +134,8 @@ eval "$(pyenv init -)"
 #  fi
 #}
 
-# start in home dir
-#cd ~
+# docker on WSL
+export DOCKER_HOST=tcp://0.0.0.0:2375
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

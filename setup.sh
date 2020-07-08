@@ -1,8 +1,12 @@
 # ! WIP USE WITH CAUTION
 
+echo "\e[42m\e[90mThis script will install zsh/oh-my-zsh, nvm, pyenv, and Docker on Ubuntu. Cancel now if that isn't what you want."
+echo "\e[44mLast updated: 7/8/2020\e[0m"
+# sleep(3) # ! doesn't currently work in WSL https://github.com/microsoft/WSL/issues/4898
+
 # apt
-echo "\e[32mSetting up apt & miscellaneous packages...\e[0m"
 sudo apt update
+echo "\e[32mSetting up apt & miscellaneous packages...\e[0m"
 sudo apt upgrade -y
 sudo apt install -y fortune-mod cowsay # ? cowsay may be installed by default (this & fortune-mod is for the chucknorris ohmyzsh plugin)
 
@@ -30,6 +34,25 @@ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
 }
 
 # Docker
+echo "\e[32mSetting up Docker...\e[0m"
+sudo apt remove docker docker-engine docker.io containerd runc # fresh install
+sudo apt install -y \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg-agent \
+	software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - # ? fix for WSL Ubuntu 20.04: https://github.com/microsoft/WSL/issues/5125#issuecomment-629811205
+echo "\e[34mFINGERPRINT (this can be checked against here: https://docs.docker.com/engine/install/ubuntu/)\e[0m"
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+echo "\e[32Done! \e[0m"
+echo "\e[32mFor help installing Docker in WSL 1/2, please visit: https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly\e[0m"
 
 # restart
 zsh
