@@ -5,10 +5,9 @@ echo "\e[44mLast updated: 7/8/2020\e[0m"
 # sleep(3) # ! doesn't currently work in WSL https://github.com/microsoft/WSL/issues/4898
 
 # apt
-sudo apt update
 echo "\e[32mSetting up apt & miscellaneous packages...\e[0m"
+sudo apt update
 sudo apt upgrade -y
-sudo apt install -y fortune-mod cowsay # ? cowsay may be installed by default (this & fortune-mod is for the chucknorris ohmyzsh plugin)
 
 # zsh/shell
 echo "\e[32mSetting up zsh & shell packages...\e[0m"
