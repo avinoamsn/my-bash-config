@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/avi/.oh-my-zsh"
+export ZSH="/Users/avi/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -72,7 +72,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   alias-finder
-  chucknorris
   osx
 )
 
