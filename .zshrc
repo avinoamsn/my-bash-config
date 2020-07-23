@@ -72,6 +72,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   alias-finder
+  # chucknorris
   osx
 )
 
@@ -122,8 +123,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # load pyenv
-export PATH="/home/avi/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
+# export PATH="/home/avi/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 
 # customize prompt username/location
