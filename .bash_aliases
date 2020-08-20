@@ -38,6 +38,7 @@ alias migrate='py migrate'
 # data mgmt
 alias flush='py flush'
 alias loaddata='py loaddata' # append fixture path to the cmd
+alias dumpdata='py dumpdata'
 alias syncdb='py syncdb'
 # admin
 alias createsuperuser='py createsuperuser'
