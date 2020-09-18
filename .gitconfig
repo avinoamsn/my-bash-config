@@ -1,7 +1,7 @@
 [user]
 	name = Avi Nerenberg
 	email = devavmeister@gmail.com
-	signingkey = A3432672F170480E
+	signingkey = 906D108EE070E9A1
 [core]
 	autocrlf = false
 [alias]
