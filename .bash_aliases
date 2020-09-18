@@ -5,7 +5,7 @@ alias ex='explorer.exe'
 alias c='code $(pwd -P)' # avoids vscode bug where git diff gutters don't work in symlink'd dirs
 
 # GIT
-alias gbrda='git branch --no-color --remote --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d' # ! untested, ohmyzsh's 'gbda' but for the remote branchs
+alias gbrda='git branch --no-color --remote --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d -r' # ohmyzsh's 'gbda' but for the remote branchs
 
 # GH PAGES
 #alias portfolio='git subtree push --prefix public origin gh-pages'
