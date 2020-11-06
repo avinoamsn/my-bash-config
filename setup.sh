@@ -53,8 +53,8 @@ sudo add-apt-repository \
    stable"
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
-echo "\e[32Done! \e[0m"
+echo "\e[32mDone\!\e[0m"
 echo "\e[32mFor help installing Docker in WSL 1/2, please visit: https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly\e[0m"
-
+echo "\e[41mREMEMBER TO UPDATE YOUR GPG SIGNING KEY IN .gitconfig\!\e[0m"
 # restart
 zsh
