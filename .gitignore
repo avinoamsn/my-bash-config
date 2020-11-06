@@ -3,7 +3,7 @@
 
 # included files
 !.gitignore
-!.gitconfig
+# !.gitconfig
 !.zshrc
 !.bash_aliases
 !setup.sh

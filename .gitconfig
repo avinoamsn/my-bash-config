@@ -1,7 +1,7 @@
 [user]
 	name = Avi Nerenberg
 	email = devavmeister@gmail.com
-	signingkey = 906D108EE070E9A1
+	signingkey = <YOUR SIGNING KEY (gpg --list-sig)>
 [core]
 	autocrlf = false
 [alias]
