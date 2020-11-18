@@ -1,7 +1,7 @@
 # ! WIP USE WITH CAUTION
 
 echo "\e[42m\e[90mThis script will install zsh/oh-my-zsh, nvm, pyenv, and Docker on Ubuntu. Cancel now if that isn't what you want."
-echo "\e[44mLast updated: 7/8/2020\e[0m"
+echo "\e[44mLast updated: 11/6/2020\e[0m"
 # sleep(3) # ! doesn't currently work in WSL https://github.com/microsoft/WSL/issues/4898
 
 # apt
@@ -9,16 +9,19 @@ echo "\e[32mSetting up apt & miscellaneous packages...\e[0m"
 sudo apt update
 sudo apt upgrade -y
 
-# zsh/shell
-echo "\e[32mSetting up zsh & shell packages...\e[0m"
+# zsh/shell & oh-my-zsh
+echo "\e[32mSetting up zsh, oh-my-zsh & shell packages...\e[0m"
 sudo apt install -y zsh
+zsh --version # check version
+chsh -s $(which zsh) # install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 [ -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ] && echo '\e[33mYou already have pk10k installed.\e[0m' ||
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 
 # nvm
 echo "\e[32mSetting up nvm...\e[0m"
 [ -d $HOME/.nvm ] && echo "\e[33mYou already have nvm installed.\e[0m" ||
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # pyenv
 echo "\e[32mSetting up pyenv...\e[0m"
@@ -50,8 +53,8 @@ sudo add-apt-repository \
    stable"
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
-echo "\e[32Done! \e[0m"
+echo "\e[32mDone\!\e[0m"
 echo "\e[32mFor help installing Docker in WSL 1/2, please visit: https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly\e[0m"
-
+echo "\e[41mREMEMBER TO UPDATE YOUR GPG SIGNING KEY IN .gitconfig\!\e[0m"
 # restart
 zsh
