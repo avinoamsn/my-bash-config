@@ -1,9 +1,10 @@
+# ignore anything that isn't expicitly omitted
 *
+
+# included files
 !.gitignore
 !.gitconfig
 !.zshrc
-!.bashrc
 !.bash_aliases
-!.config/terminator
 !setup.sh
 !README.md
