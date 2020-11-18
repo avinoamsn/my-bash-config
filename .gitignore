@@ -1,10 +1,18 @@
 # ignore anything that isn't expicitly omitted
 *
 
-# included files
+# git
 !.gitignore
 !.gitconfig
+
+# include custom .vscode settings (this is where I version custom vscode settings files that I apply globally)
+!.vscode
+!.vscode/*
+
+# bash (zsh) & my setup script
 !.zshrc
 !.bash_aliases
 !setup.sh
+
+# repo readme
 !README.md
