@@ -122,9 +122,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# load pyenv
+# add pyenv to pat & load pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+
+# add `.local/bin` to path (includes xdg-open-wsl: https://github.com/cpbotha/xdg-open-wsl)
+export PATH="$HOME/.local/bin:$PATH"
 
 # customize prompt username/location
 #prompt_context() {
