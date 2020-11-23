@@ -4,9 +4,13 @@ alias firefox='"/c/Program Files/Mozilla Firefox/firefox.exe"'
 alias ex='explorer.exe'
 alias c='code $(pwd -P)' # avoids vscode bug where git diff gutters don't work in symlink'd dirs
 
+###########################
+# GIT & RELATED ALIASES
+###########################
+
 # GIT
 alias gbrda='git branch --no-color --remote --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d -r' # ohmyzsh's 'gbda' but for the remote branchs
-alias grp='git remote update origin --prune'                                                                                                          # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
+alias grp='git remote update origin --prune' # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
 
 # GH PAGES
 #alias portfolio='git subtree push --prefix public origin gh-pages'
@@ -19,19 +23,15 @@ alias gps='git push & git push staging master && fg'
 alias gpp='git push & git push production master && fg'
 alias gpa='git push & git push staging master & git push production master && fg'
 
-# HITCH
-alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
-
-# AMPSIGHT
-#alias cloud-docker='cd ~/ampsight/cloud-assessment-tool/; docker-compose up api postgres'
-alias cloud-start='cd ~/ampsight/cv2/frontend; npm start'
-alias cloud='cd ~/ampsight/cv2/frontend'
+###########################
+# PYTHON & RELATED ALIASES
+###########################
 
 # PIPENV
 alias activate='source env/bin/activate'
 
 # DJANGO
-alias py='python manage.py' # prepend to manage cmds
+alias py='python manage.py' # prepend to manage cmds (see examples below)
 alias collectstatic='py collectstatic'
 # serve
 alias runserver='py runserver'
@@ -46,3 +46,13 @@ alias dumpdata='py dumpdata'
 alias syncdb='py syncdb'
 # admin
 alias createsuperuser='py createsuperuser'
+
+###########################
+# PROJECT-SPECIFIC ALIASES
+###########################
+
+# HITCH
+alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
+
+# AMPSIGHT
+alias cv-launch='cd ~/ampsight/cv; gstaa stash@{0}; activate; make install_database; migrate; loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json' # ? initialize docker container w/ the postgres db & load with fixtures, requires that the top stash be the updated `Makefile` & `create_role.sql` files (uses priv password for postgres admin)
