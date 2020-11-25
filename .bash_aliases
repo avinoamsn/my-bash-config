@@ -55,4 +55,4 @@ alias createsuperuser='py createsuperuser'
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
 # AMPSIGHT
-alias cv-launch='cd ~/ampsight/cv; gstaa stash@{0}; activate; make install_database; migrate; loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json' # ? initialize docker container w/ the postgres db & load with fixtures, requires that the top stash be the updated `Makefile` & `create_role.sql` files (uses priv password for postgres admin)
+alias cv-launch='cd ~/ampsight/cv; gstaa stash@{0}; activate; make install_database; migrate; loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json; g reset --hard; start' # ? initialize docker container w/ the postgres db & load with fixtures, requires that the top stash be the updated `Makefile` & `create_role.sql` files (uses priv password for postgres admin)
