@@ -42,3 +42,6 @@ alias dumpdata='py dumpdata'
 alias syncdb='py syncdb'
 # admin
 alias createsuperuser='py createsuperuser'
+
+# REDWOODJS
+alias rw='yarn rw'
