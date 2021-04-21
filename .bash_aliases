@@ -10,7 +10,7 @@ alias c='code $(pwd -P)' # avoids vscode bug where git diff gutters don't work i
 
 # GIT
 alias gbrda='git branch --no-color --remote --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d -r' # ohmyzsh's 'gbda' but for the remote branchs
-alias grp='git remote update origin --prune' # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
+alias grp='grup origin --prune' # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
 
 # GH PAGES
 #alias portfolio='git subtree push --prefix public origin gh-pages'
