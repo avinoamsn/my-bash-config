@@ -4,14 +4,22 @@
 	signingkey = <MY_SIGNING_KEY>
 [core]
 	autocrlf = false
+	editor = code
 [alias]
 	unstage = reset --
 	# https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	lg = !"git lg1"
+	# https://stackoverflow.com/a/4408378/5425359
+	permission-reset = !git diff -p -R --no-ext-diff --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+	done = commit -F commit.md
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 [commit]
 	gpgsign = true
 	signoff = true
 [gpg]
 	program = gpg
+[filter "gitignore"] # WIP https://stackoverflow.com/a/16244970/5425359
+	clean = "sed '/#gitignore$/d'" # ignore files ending in "#gitignore" (used by .gitconfig above)
+	smudge = cat
