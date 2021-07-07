@@ -1,3 +1,8 @@
+# fix for zsh completions
+# https://superuser.com/questions/1222867/zsh-completion-functions-broken
+fpath=(/usr/local/Cellar/zsh/5.8/share/zsh/functions/ $fpath)
+export fpath
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
