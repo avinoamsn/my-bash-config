@@ -10,7 +10,7 @@ alias c='code $(pwd -P)' # avoids vscode bug where git diff gutters don't work i
 
 # GIT
 alias gbrda='git branch --no-color --remote --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d -r' # ohmyzsh's 'gbda' but for the remote branchs
-alias grp='grup origin --prune' # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
+alias grp='grup origin --prune'                                                                                                                       # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
 
 # GH PAGES
 #alias portfolio='git subtree push --prefix public origin gh-pages'
@@ -59,4 +59,4 @@ alias cv-loaddata='loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.jso
 
 # ? the below command initializes a CV instance w/ a postgres db inside of a docker container
 # ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
-alias cv-launch='cd ~/ampsight/cv; gstaa stash@{0}; activate; make install_database; grhh; migrate; cv-loaddata; start'
+alias cv-launch='cd ~/ampsight/cv/cv2; gstaa stash@{0}; activate; make install_database; grhh; migrate; cv-loaddata; start'
