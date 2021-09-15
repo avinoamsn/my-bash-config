@@ -1,10 +1,10 @@
 [user]
 	name = Avi Nerenberg
 	email = devavmeister@gmail.com
-	signingkey = <MY_SIGNING_KEY>
+	signingkey = 906D108EE070E9A1
 [core]
 	autocrlf = false
-	editor = code
+	editor = code -w
 [alias]
 	unstage = reset --
 	# https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs

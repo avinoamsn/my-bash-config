@@ -1,3 +1,7 @@
+# ZSH/OHMYZSH
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh/.oh-my-zsh.sh"
+
 # EXECUTABLES
 alias subl='"/c/Program Files/Sublime Text 3/sublime_text.exe"'
 alias firefox='"/c/Program Files/Mozilla Firefox/firefox.exe"'
