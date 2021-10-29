@@ -59,8 +59,8 @@ alias createsuperuser='py createsuperuser'
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
 # AMPSIGHT
-alias cv-loaddata='loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json;' # load default CV fixtures
+alias cv-loaddata='loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json cv/fixtures/finance.json;' # load default CV fixtures
 
 # ? the below command initializes a CV instance w/ a postgres db inside of a docker container
 # ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
-alias cv-launch='cd ~/ampsight/cv/cv2; gstaa stash@{0}; activate; make install_database; grhh; migrate; cv-loaddata; start'
+alias cv-launch='cd ~/ampsight/cv/cv2; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; migrate; cv-loaddata; start'
