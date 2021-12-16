@@ -12,31 +12,32 @@ sudo apt upgrade -y
 # zsh/shell & oh-my-zsh
 echo "\e[32mSetting up zsh, oh-my-zsh & shell packages...\e[0m"
 sudo apt install -y zsh
-zsh --version # check version
+zsh --version        # check version
 chsh -s $(which zsh) # install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-[ -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ] && echo '\e[33mYou already have pk10k installed.\e[0m' ||
+[ -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ] && echo '\e[33mYou already have p10k installed.\e[0m' ||
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
 
 # nvm
 echo "\e[32mSetting up nvm...\e[0m"
 [ -d $HOME/.nvm ] && echo "\e[33mYou already have nvm installed.\e[0m" ||
 
-# pyenv
-echo "\e[32mSetting up pyenv...\e[0m"
-# https://realpython.com/intro-to-pyenv/
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
-	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
-[ -d $HOME/.pyenv ] && echo "\e[33mYou already have pyenv installed.\e[0m" || {
-	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-	echo 'export PYENV_ROOT="$HOME/.pyenv"' >>~/.bash_profile
-	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >>~/.bash_profile
-}
+	# pyenv
+	# TODO check out pyenv installer: https://github.com/pyenv/pyenv-installer
 
-# Docker
-echo "\e[32mSetting up Docker...\e[0m"
+	# 	echo "\e[32mSetting up pyenv...\e[0m"
+	# # https://realpython.com/intro-to-pyenv/
+	# sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+	# 	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+	# 	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+	# [ -d $HOME/.pyenv ] && echo "\e[33mYou already have pyenv installed.\e[0m" || {
+	# 	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+	# 	echo 'export PYENV_ROOT="$HOME/.pyenv"' >>~/.bash_profile
+	# 	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >>~/.bash_profile
+	# }
+
+	# Docker
+	echo "\e[32mSetting up Docker...\e[0m"
 sudo apt remove docker docker-engine docker.io containerd runc # fresh install
 sudo apt install -y \
 	apt-transport-https \
@@ -56,5 +57,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 echo "\e[32mDone\!\e[0m"
 echo "\e[32mFor help installing Docker in WSL 1/2, please visit: https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly\e[0m"
 echo "\e[41mREMEMBER TO UPDATE YOUR GPG SIGNING KEY IN .gitconfig\!\e[0m"
+echo "\e[41mMay need to install Nerd Fonts (or Powerline fonts) for compatibility with p10k. My preferred font for both Windows Terminal & VSCode terminal is MesloLGS NF. Here's a helpful guide for installing Powerline fonts: http://iamnotmyself.com/2017/04/15/setting-up-powerline-shell-on-windows-subsystem-for-linux/\e[0m"
+
 # restart
 zsh

@@ -4,7 +4,7 @@
 	signingkey = <MY_SIGNING_KEY>
 [core]
 	autocrlf = false
-	editor = code
+	editor = code -w
 [alias]
 	unstage = reset --
 	# https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
