@@ -96,16 +96,8 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-alias zshconfig="vim ~/.zshrc"
-#alias ohmyzsh="vim ~/.oh-my-zsh"
-
-# aliases from bash
-source ~/.bash_aliases
+# load my profile (includes nvm, pyenv, aliases, etc)
+[ ! -e ~/.profile ] || . ~/.profile
 
 # WSL 2 networking host IP
 DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0

@@ -10,9 +10,10 @@
 !.vscode
 !.vscode/*
 
-# bash (zsh) & my setup script
+# zsh + profile config & my setup script
 !.zshrc
-!.bash_aliases
+!.profile
+!.aliases
 !setup.sh
 
 # repo readme
