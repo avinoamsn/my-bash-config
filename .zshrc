@@ -98,33 +98,3 @@ source $ZSH/oh-my-zsh.sh
 
 # load my profile (includes nvm, pyenv, aliases, etc)
 [ ! -e ~/.profile ] || . ~/.profile
-
-# WSL 2 networking host IP
-DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
-
-# solarized dircolors
-if [ -f ~/.dir_colors ]; then
-  eval `dircolors ~/.dir_colors`
-fi
-
-# load nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# add pyenv to pat & load pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-
-# add `.local/bin` to path (includes xdg-open-wsl: https://github.com/cpbotha/xdg-open-wsl)
-export PATH="$HOME/.local/bin:$PATH"
-
-# customize prompt username/location
-#prompt_context() {
-#  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-#    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-#  fi
-#}
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
