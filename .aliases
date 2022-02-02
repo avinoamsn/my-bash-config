@@ -65,4 +65,4 @@ alias cv-loaddata='loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.jso
 
 # ? the below command initializes a CV instance w/ a postgres db inside of a docker container
 # ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
-alias cv-launch='cd ~/cloud-vector/cloud-vector-2-0-django; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; migrate; cv-loaddata; start'
+alias cv-launch='cd ~/cv/cloud-vector-2-0-django; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; migrate; cv-loaddata; start'
