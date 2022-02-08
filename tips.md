@@ -1,4 +1,4 @@
-# DevOps & programming tips that I've collected over the years
+# Coding tips that I've collected over the years
 
 ## Bash
 
