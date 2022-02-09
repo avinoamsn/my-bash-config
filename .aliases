@@ -16,8 +16,9 @@ function vsc() {
 # GIT & RELATED ALIASES
 ###########################
 
-# GIT
-alias grp='grup origin --prune' # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
+# GIT (ohmyzsh alias extensions)
+alias gdo="sed '$d' commit.md | git commit -F -" # ? delete last line from `commit.md` (markdownlint config) & pass into git
+alias grp='grup origin --prune'                  # ? prune local list of remote branches, not sure if this is any different from ohmyzsh's gfa (git fetch --all --prune)
 
 # GH PAGES
 alias portfolio='git push origin `git subtree split --prefix public master`:gh-pages --force' # https://stackoverflow.com/questions/33172857/how-do-i-force-a-subtree-push-to-overwrite-remote-changes
