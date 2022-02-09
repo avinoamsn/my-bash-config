@@ -1,7 +1,7 @@
 [user]
 	name = Avi Nerenberg
 	email = devavmeister@gmail.com
-	signingkey = 906D108EE070E9A1
+	signingkey = <MY_SIGNING_KEY>
 [core]
 	autocrlf = false
 	editor = code -w
@@ -13,7 +13,6 @@
 	lg = !"git lg1"
 	# https://stackoverflow.com/a/4408378/5425359
 	permission-reset = !git diff -p -R --no-ext-diff --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
-	done = commit -F commit.md
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 [commit]
 	gpgsign = true
