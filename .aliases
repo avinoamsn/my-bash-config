@@ -17,7 +17,7 @@ function vsc() {
 ###########################
 
 # GIT (ohmyzsh alias extensions)
-alias gdo="head -n -1 commit.md | git commit -F -" # ? delete last line from `commit.md` (markdownlint config) & pass into git
+alias gdo="head -n -1 commit.md | git commit -F -" # ? delete last line from `commit.md` (inline markdownlint config) & pass into git
 
 # GH PAGES
 alias portfolio='git push origin `git subtree split --prefix public master`:gh-pages --force' # https://stackoverflow.com/questions/33172857/how-do-i-force-a-subtree-push-to-overwrite-remote-changes
