@@ -16,5 +16,8 @@
 !.aliases
 !setup.sh
 
+# backups
+!*.bak
+
 # docs
 !*.md
