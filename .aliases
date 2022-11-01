@@ -17,17 +17,16 @@ function vsc() {
 ###########################
 
 # GIT (ohmyzsh alias extensions)
+alias gs=gst
 alias gdo="head -n -1 commit.md | git commit -F -" # ? delete last line from `commit.md` (inline markdownlint config) & pass into git
 
 # GH PAGES
-alias portfolio='git push origin `git subtree split --prefix public master`:gh-pages --force' # https://stackoverflow.com/questions/33172857/how-do-i-force-a-subtree-push-to-overwrite-remote-changes
+alias ghportfolio='git push origin `git subtree split --prefix public master`:gh-pages --force' # https://stackoverflow.com/questions/33172857/how-do-i-force-a-subtree-push-to-overwrite-remote-changes
 
 # WPENGINE-SPECIFIC GIT
-alias gs='git status'
-alias gp='git push'
-alias gps='git push & git push staging master && fg'
-alias gpp='git push & git push production master && fg'
-alias gpa='git push & git push staging master & git push production master && fg'
+alias gpstag='git push & git push staging master && fg'
+alias gpprod='git push & git push production master && fg'
+alias gpall='git push & git push staging master & git push production master && fg'
 
 ###########################
 # PYTHON & RELATED ALIASES
@@ -37,21 +36,7 @@ alias gpa='git push & git push staging master & git push production master && fg
 alias activate='source env/bin/activate'
 
 # DJANGO
-alias py='python manage.py' # prepend to manage cmds (see examples below)
-alias collectstatic='py collectstatic'
-# serve
-alias runserver='py runserver'
-alias start='activate; runserver'
-# migrations
-alias makemigrations='py makemigrations'
-alias migrate='py migrate'
-# data mgmt
-alias flush='py flush'
-alias loaddata='py loaddata' # append fixture path to the cmd
-alias dumpdata='py dumpdata'
-alias syncdb='py syncdb'
-# admin
-alias createsuperuser='py createsuperuser'
+alias pym='python manage.py' # prepend to manage cmds (used by AMPSIGHT aliases below)
 
 ###########################
 # PROJECT-SPECIFIC ALIASES
@@ -61,5 +46,5 @@ alias createsuperuser='py createsuperuser'
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
 # AMPSIGHT
-alias cv-loaddata='loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json cv/fixtures/financial_demo.json' # load default CV fixtures
-alias cv-launch='cd ~/cv/backend; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; migrate; cv-loaddata; start' # ? initializes a CV instance w/ a postgres db inside of a docker container # ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
+alias cv-loaddata='pym loaddata cv/fixtures/cv_updated_with_financial.json cv/fixtures/rss_article.json' # load default CV fixtures, old: cv/fixtures/cv_full.json, cv/fixtures/financial_demo.json
+alias cv-launch='cd ~/cv/backend; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cv-loaddata; pym runserver' # ? initializes a CV instance w/ a postgres db inside of a docker container # ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
