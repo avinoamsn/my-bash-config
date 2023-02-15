@@ -9,7 +9,7 @@
 # TODO is this still necessary?
 DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
 
-# add `.local/bin` to path (includes xdg-open-wsl: https://github.com/cpbotha/xdg-open-wsl)
+# add `.local/bin` to path (includes `git-filter-repo` - https://github.com/newren/git-filter-repo/blob/main/INSTALL.md)
 # TODO ""
 export PATH="$HOME/.local/bin:$PATH"
 
