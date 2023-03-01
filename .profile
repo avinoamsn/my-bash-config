@@ -44,6 +44,3 @@ fi
 
 # `history` cmd format
 export HISTTIMEFORMAT="%d/%m/%y %T "
-
-# p10k config
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
