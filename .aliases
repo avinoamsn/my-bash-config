@@ -1,15 +1,16 @@
-# ZSH/OHMYZSH
+#!/bin/bash
+# ? shellcheck isn't compatible w/ zsh - https://github.com/koalaman/shellcheck/issues/809#issuecomment-277326918
+# * zsh-sweep might be a viable alternative - https://github.com/psprint/zsh-sweep
+
+# ZSH CONFIG
 alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh/.oh-my-zsh.sh"
 
 # EXECUTABLES
-alias subl='"/c/Program Files/Sublime Text 3/sublime_text.exe"'
-alias firefox='"/c/Program Files/Mozilla Firefox/firefox.exe"'
 alias ex='explorer.exe'
 
-# ? circumvents vscode bug where git diff gutters (and related extensions) don't work in symlink'd dirs
+# circumvents vscode bug where git diff gutters (and related extensions) don't work in symlink'd dirs
 function vsc() {
-	code $(readlink -f $1)
+	code "$(readlink -f "$1")"
 }
 
 ###########################
@@ -18,7 +19,7 @@ function vsc() {
 
 # GIT (ohmyzsh alias extensions)
 alias gs=gst
-alias gdo="head -n -1 commit.md | git commit -F -" # ? delete last line from `commit.md` (inline markdownlint config) & pass into git
+alias gdo="head -n -1 commit.md | git commit -F -" # delete last line from `commit.md` (inline markdownlint config) & pass into git
 
 # GH PAGES
 alias ghportfolio='git push origin `git subtree split --prefix public master`:gh-pages --force' # https://stackoverflow.com/questions/33172857/how-do-i-force-a-subtree-push-to-overwrite-remote-changes
@@ -27,6 +28,12 @@ alias ghportfolio='git push origin `git subtree split --prefix public master`:gh
 alias gpstag='git push & git push staging master && fg'
 alias gpprod='git push & git push production master && fg'
 alias gpall='git push & git push staging master & git push production master && fg'
+
+###########################
+# DOCKER
+###########################
+
+alias dpa='docker ps -a' # list all containers (i.e. "docker process status all")
 
 ###########################
 # PYTHON & RELATED ALIASES
@@ -45,7 +52,22 @@ alias pym='python manage.py' # prepend to manage cmds (used by AMPSIGHT aliases 
 # HITCH
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
-# AMPSIGHT
-alias cv-start='activate; pym runserver'
-alias cv-loaddata='pym loaddata cv/fixtures/cv_full.json cv/fixtures/rss_article.json'                                                                                     # load default CV fixtures, old: cv/fixtures/cv_full.json, cv/fixtures/financial_demo.json
-alias cv-launch='cd ~/cv.backend; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cv-loaddata; pym runserver' # ? initializes a CV instance w/ a postgres db inside of a docker container # ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
+# AMPSIGHT - CV
+function cv() {
+	# start CV backend
+	if [[ $1 == "run" ]]; then
+		eval 'activate; pym runserver'
+
+	# load fixture data
+	elif [[ $1 == "loaddata" ]]; then
+		eval 'pym loaddata cv_full.json rss_article.json samm_template.json modular_fixtures/Answer.json modular_fixtures/Approach.json modular_fixtures/AnswerApproach.json'
+
+	# build, populate, & launch dockerized CV backend
+	# ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
+	elif [[ $1 == "start" ]]; then
+		eval 'cd ~/cv.server; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cv loaddata; pym runserver'
+
+	else
+		echo "Valid commands are: \`run\`, \`loaddata\`, \`start\`."
+	fi
+}
