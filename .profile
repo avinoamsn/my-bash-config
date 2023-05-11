@@ -13,6 +13,8 @@ DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
 # TODO ""
 export PATH="$HOME/.local/bin:$PATH"
 
+autoload -U add-zsh-hook # used by the functions below
+
 ##################
 # pyenv setup
 ##################
@@ -25,6 +27,22 @@ eval "$(pyenv init --path)"
 # load pyenv into shell
 eval "$(pyenv init -)"
 
+# source virtualenv automatically whenever `env` is detected
+# ? NOTE - using `virtualenv` w/ ohmyzsh's `virtualenvwrapper` plugin might be a superior solution
+load-venv() {
+	if [ -d "env" ]; then
+		echo "Activating virtual environment..."
+		source env/bin/activate
+	elif [ -n "$VIRTUAL_ENV" ]; then
+		echo "Deactivating virtual environment..."
+		deactivate
+		# echo "Reverting to pyenv default"
+		# pyenv shell "$(cat ~/.pyenv/version)"
+	fi
+}
+
+add-zsh-hook chpwd load-venv # exec on `cd`
+
 ##################
 # nvm setup
 ##################
@@ -34,8 +52,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # call `use nvm` automatically whenever `.nvmrc` is detected
-autoload -U add-zsh-hook
-
 load-nvmrc() {
 	local nvmrc_path
 	nvmrc_path="$(nvm_find_nvmrc)"
@@ -55,8 +71,8 @@ load-nvmrc() {
 	fi
 }
 
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+add-zsh-hook chpwd load-nvmrc # exec on `cd`
+load-nvmrc                    # exec on shell initialization
 
 ##################
 # p10k setup
