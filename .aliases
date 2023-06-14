@@ -54,7 +54,7 @@ alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
 # AMPSIGHT - CV
 function cv() {
-	# start CV backend
+	# run CV backend
 	if [[ $1 == "run" ]]; then
 		eval 'activate; pym runserver'
 
@@ -62,12 +62,26 @@ function cv() {
 	elif [[ $1 == "loaddata" ]]; then
 		eval 'pym loaddata cv_full.json rss_article.json samm_template.json modular_fixtures/Answer.json modular_fixtures/Approach.json modular_fixtures/AnswerApproach.json'
 
-	# build, populate, & launch dockerized CV backend
-	# ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
+	# build, populate, and launch dockerized CV backend
 	elif [[ $1 == "start" ]]; then
-		eval 'cd ~/cv.server; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cv loaddata; pym runserver'
+		start_usage() { echo 'Please specify "-d" (docker) or "-l" (local).'; }
+
+		OPTIND=2 # `getopts` uses optind to find option args (more: https://unix.stackexchange.com/a/140904/413465)
+		while getopts 'dl' flag; do
+			case "${flag}" in
+			# docker
+			# ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
+			d) eval 'cd ~/cv.server; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cv loaddata; pym runserver' ;;
+			# local
+			l) eval 'cd ~/cv.server; pym reset_db --noinput; pym migrate; cv loaddata; pym runserver' ;;
+			*) start_usage ;;
+			esac
+		done
+
+		# displays usage msg if no options are passed (more: https://unix.stackexchange.com/a/50648/413465)
+		if [ $OPTIND -eq 2 ]; then start_usage; fi
 
 	else
-		echo "Valid commands are: \`run\`, \`loaddata\`, \`start\`."
+		echo "Valid commands are: \`run\`, \`loaddata\`, \`start -(d|l)\`."
 	fi
 }
