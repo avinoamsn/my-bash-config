@@ -53,7 +53,21 @@ alias pym='python manage.py' # prepend to manage cmds (used by AMPSIGHT aliases 
 alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
 # AMPSIGHT - CV
-function cv() {
+# frontend scripts
+function cvf() {
+	usage() { echo 'Please specify "-b" (beta) or "-l" (local).'; }
+
+	while getopts 'bl' flag; do
+		case "${flag}" in
+		b) eval 'CV_API_URL=https://cloudvector-api-beta.ampsight.io npm start' ;; # run against beta backend
+		l) eval 'CV_API_URL=http://127.0.0.1:8000 npm start' ;;                    # run against local backend
+		*) usage ;;
+		esac
+	done
+}
+
+# backend scripts
+function cvb() {
 	# run CV backend
 	if [[ $1 == "run" ]]; then
 		eval 'activate; pym runserver'
