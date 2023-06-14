@@ -35,6 +35,9 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 source $ZSH/oh-my-zsh.sh
 
+# autojump - https://github.com/wting/autojump#automatic
+source /usr/share/autojump/autojump.sh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
