@@ -36,6 +36,8 @@ load-venv() {
 	elif [ -n "$VIRTUAL_ENV" ]; then
 		echo "Deactivating virtual environment..."
 		deactivate
+		export VIRTUAL_ENV='' # set VIRTUAL_ENV to null
+
 		# echo "Reverting to pyenv default"
 		# pyenv shell "$(cat ~/.pyenv/version)"
 	fi
