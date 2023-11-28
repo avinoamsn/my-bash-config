@@ -55,39 +55,15 @@ alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 # AMPSIGHT - CV
 # frontend scripts
 function cvf() {
-	usage() { echo 'Please specify "-b" (beta) or "-l" (local).'; }
-
-	while getopts 'bl' flag; do
-		case "${flag}" in
-		b) eval 'CV_API_URL=https://cloudvector-api-beta.ampsight.io npm start' ;; # run against beta backend
-		l) eval 'CV_API_URL=http://127.0.0.1:8000 npm start' ;;                    # run against local backend
-		*) usage ;;
-		esac
-	done
-}
-
-# backend scripts
-function cvb() {
-	# run CV backend
-	if [[ $1 == "run" ]]; then
-		eval 'activate; pym runserver'
-
-	# load fixture data
-	elif [[ $1 == "loaddata" ]]; then
-		eval 'pym loaddata cv_full.json rss_article.json samm_template.json modular_fixtures/Answer.json modular_fixtures/Approach.json modular_fixtures/AnswerApproach.json'
-
-	# build, populate, and launch dockerized CV backend
-	elif [[ $1 == "start" ]]; then
-		start_usage() { echo 'Please specify "-d" (docker) or "-l" (local).'; }
+	# start cv frontend
+	if [[ $1 == "start" ]]; then
+		start_usage() { echo 'Please specify "-b" (beta) or "-l" (local).'; }
 
 		OPTIND=2 # `getopts` uses optind to find option args (more: https://unix.stackexchange.com/a/140904/413465)
-		while getopts 'dl' flag; do
+		while getopts 'bl' flag; do
 			case "${flag}" in
-			# docker
-			# ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
-			d) eval 'cd ~/cv.server; gstaa stash@{0}; activate; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cv loaddata; pym runserver' ;;
-			# local
-			l) eval 'cd ~/cv.server; pym reset_db --noinput; pym migrate; cv loaddata; pym runserver' ;;
+			b) eval 'CV_API_URL=https://cloudvector-api-beta.ampsight.io npm start' ;; # run against beta backend
+			l) eval 'CV_API_URL=http://127.0.0.1:8000 npm start' ;;                    # run against local backend
 			*) start_usage ;;
 			esac
 		done
@@ -96,6 +72,44 @@ function cvb() {
 		if [ $OPTIND -eq 2 ]; then start_usage; fi
 
 	else
-		echo "Valid commands are: \`run\`, \`loaddata\`, \`start -(d|l)\`."
+		echo "Valid commands are: \`start -([b]eta|[l]ocal)\`."
+	fi
+}
+
+# backend scripts
+# NOTE - venv sourcing is automatically done on `cd ~/cv.server` (see `load-venv` in `~/.profile` for info)
+function cvb() {
+	# run CV backend
+	if [[ $1 == "run" ]]; then
+		eval 'activate; pym runserver'
+
+	# load fixture data
+	elif [[ $1 == "loaddata" ]]; then
+		eval 'cd ~/cv.server; pym loaddata cv_full.json rss_article.json samm_template.json'
+
+	# build, populate, and launch dockerized CV backend
+	elif [[ $1 == "spin-up" ]]; then
+		start_usage() { echo 'Please specify "-d" (docker) or "-l" (local).'; }
+
+		OPTIND=2 # `getopts` uses optind to find option args (more: https://unix.stackexchange.com/a/140904/413465)
+		while getopts 'dl' flag; do
+			case "${flag}" in
+			# docker
+			# ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
+			d) eval 'cd ~/cv.server; gstaa stash@{0}; make install_database; gco HEAD -- Makefile scripts/create_role.sql; pym migrate; cvb loaddata; pym runserver' ;;
+			# local
+			l) eval 'cd ~/cv.server; pym reset_db --noinput; pym migrate; cvb loaddata; pym runserver' ;;
+			*) start_usage ;;
+			esac
+		done
+
+		# displays usage msg if no options are passed (more: https://unix.stackexchange.com/a/50648/413465)
+		if [ $OPTIND -eq 2 ]; then start_usage; fi
+
+	elif [[ $1 == "reset" ]]; then
+		eval 'cd ~/cv.server; pym reset_db --noinput'
+
+	else
+		echo "Valid commands are: \`run\`, \`loaddata\`, \`spin-up -([d]ocker|[l]ocal)\`, and \`reset\`."
 	fi
 }
