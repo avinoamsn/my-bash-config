@@ -54,6 +54,7 @@ alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
 
 # AMPSIGHT - CV
 # frontend scripts
+# NOTE - uses bun instead of npm (https://bun.sh/)
 function cvf() {
 	# start cv frontend
 	if [[ $1 == "start" ]]; then
@@ -62,8 +63,8 @@ function cvf() {
 		OPTIND=2 # `getopts` uses optind to find option args (more: https://unix.stackexchange.com/a/140904/413465)
 		while getopts 'bl' flag; do
 			case "${flag}" in
-			b) eval 'CV_API_URL=https://cloudvector-api-beta.ampsight.io npm start' ;; # run against beta backend
-			l) eval 'CV_API_URL=http://127.0.0.1:8000 npm start' ;;                    # run against local backend
+			b) eval 'CV_API_URL=https://cloudvector-api-beta.ampsight.io bun start' ;; # run against beta backend
+			l) eval 'CV_API_URL=http://127.0.0.1:8000 bun start' ;;                    # run against local backend
 			*) start_usage ;;
 			esac
 		done
