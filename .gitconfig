@@ -18,7 +18,7 @@
 	# rm branches with a deleted upstream (w/ confirmation) - combination of: https://stackoverflow.com/a/31776247/5425359, https://stackoverflow.com/a/28464339/5425359
 	# ! can delete working branches w/ uncommitted changes, use with caution
 	# NOTE - check out this page for another (possibly more robust) approach: https://blog.mimacom.com/git-aliases-you-wished-you-had/
-	# TODO - the vi window might not be working (branches deleted before confirmation)
+	# NOTE - also see omz's similar aliases `gbg`, `gbgd` & `gbgD`
 	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' >/tmp/merged-branches && vi /tmp/merged-branches && xargs -r git branch -D </tmp/merged-branches
 	# open the diff b/w two commits in VSCode
 	open-diff = ! git diff --name-only $1 $2 | xargs -I {} code "{}"
