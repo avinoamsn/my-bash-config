@@ -43,3 +43,21 @@ source /usr/share/autojump/autojump.sh
 
 # load my profile (includes nvm, pyenv, aliases, etc)
 [ ! -e ~/.profile ] || . ~/.profile
+
+# bun completions
+[ -s "/home/avi/.bun/_bun" ] && source "/home/avi/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/avi/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# enable true color - https://askubuntu.com/a/1329392/1567235
+export COLORTERM=truecolor

@@ -7,7 +7,7 @@
 
 # WSL 2 networking host IP
 # TODO is this still necessary?
-DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
+# DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
 
 # add `.local/bin` to path (includes `git-filter-repo` - https://github.com/newren/git-filter-repo/blob/main/INSTALL.md)
 # TODO ""

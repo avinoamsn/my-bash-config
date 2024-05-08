@@ -1,5 +1,5 @@
-# My bash config
+# My Zsh Configuration
 
-This repo contains a handful of files I use to customize my bash experience, including a setup script `setup.sh` that automates most of the heavy lifting in a fresh Debian-based install.
+This repo contains a handful of files I use to customize my Zsh experience.
 
-**Note:** The setup script is likely outdated.
+**TODO: Detail repo contents.**
