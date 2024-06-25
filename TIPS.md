@@ -1,5 +1,10 @@
 # Helpful bash/terminal config & tips
 
+## VSCode
+
+- regex search to match all characters (including whitespaces) up to a given string: `<start_string>[\s\S\n]+?<end_string>` (source: <https://community.dynamics.com/blogs/post/?postid=046196e4-2510-4af8-a93e-82214bee3d3a>)
+  - example: `<PrimaryButton[\s\S\n^>]+?text=[^>]+?>` - finds `PrimaryButton` els w/ `text=` prop assignment inside the tag
+
 ## Powershell config
 
 - enable winget (if it's not automatically available):
