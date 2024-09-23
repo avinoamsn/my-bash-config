@@ -5,12 +5,8 @@
 # source custom aliases
 [ ! -e ~/.aliases ] || . ~/.aliases
 
-# WSL 2 networking host IP
-# TODO is this still necessary?
-# DISPLAY=$(cat /etc/resolv.conf | grep name | cut -d' ' -f2):0.0
-
 # add `.local/bin` to path (includes `git-filter-repo` - https://github.com/newren/git-filter-repo/blob/main/INSTALL.md)
-# TODO ""
+# TODO - is this still necessary?
 export PATH="$HOME/.local/bin:$PATH"
 
 autoload -U add-zsh-hook # used by the functions below
@@ -27,23 +23,32 @@ eval "$(pyenv init --path)"
 # load pyenv into shell
 eval "$(pyenv init -)"
 
-# source virtualenv automatically whenever `env` is detected
-# ? NOTE - using `virtualenv` w/ ohmyzsh's `virtualenvwrapper` plugin might be a superior solution
-load-venv() {
-	if [ -d "env" ]; then
-		echo "Activating virtual environment..."
+# setup python/virtualenv whenever the `env` dir OR a `.python-version` file is detected
+# TODO - investigate whether `virtualenv` w/ ohmyzsh's `virtualenvwrapper` plugin is a superior solution
+setup-python() {
+	if [ -d "env" ]; then # if `env` dir exists, activate the virtualenv
+		# echo "Activating virtual environment..."
 		source env/bin/activate
-	elif [ -n "$VIRTUAL_ENV" ]; then
-		echo "Deactivating virtual environment..."
+	elif [ -n "$VIRTUAL_ENV" ] && [ ! -f .python-version ]; then # if there is no `env` dir and no `.python-version` file but there is an active virtualenv, deactivate it
+		# echo "Deactivating virtual environment..."
 		deactivate
-		export VIRTUAL_ENV='' # set VIRTUAL_ENV to null
+		export VIRTUAL_ENV=''
+	elif [[ -f .python-version ]]; then # if there is a `.python-version` file, install the Python version (if necessary) and create a virtualenv
+		echo "\`.python-version\` found without a virtual environment."
+		python_version=$(cat .python-version)
 
-		# echo "Reverting to pyenv default"
-		# pyenv shell "$(cat ~/.pyenv/version)"
+		if ! pyenv versions --bare | grep -q "^$python_version\$"; then # if the Python version is not installed, install it
+			echo "Installing Python $python_version using pyenv..."
+			pyenv install "$python_version"
+		fi
+
+		echo "Creating virtual environment..."
+		python -m venv env
 	fi
 }
 
-add-zsh-hook chpwd load-venv # exec on `cd`
+add-zsh-hook chpwd setup-python # exec on `cd`
+setup-python                    # exec on shell initialization
 
 ##################
 # nvm setup
@@ -53,8 +58,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# call `use nvm` automatically whenever `.nvmrc` is detected
-load-nvmrc() {
+# setup node whenever `.nvmrc` is detected
+setup-node() {
 	local nvmrc_path
 	nvmrc_path="$(nvm_find_nvmrc)"
 
@@ -73,8 +78,8 @@ load-nvmrc() {
 	fi
 }
 
-add-zsh-hook chpwd load-nvmrc # exec on `cd`
-load-nvmrc                    # exec on shell initialization
+add-zsh-hook chpwd setup-node # exec on `cd`
+setup-node                    # exec on shell initialization
 
 ##################
 # p10k setup
