@@ -63,3 +63,10 @@ Additional instructions for setting up the development environment.
 5. Install the necessary fonts:
     - [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md) - used by powerlevel10k
     - [Fira Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) - used by VS Code
+
+### Additional Packages
+
+Useful packages to install:
+
+- [Wajig](https://wiki.debian.org/Wajig) - "a simplified and more unified command line interface for package management"
+- [Bun](https://bun.sh/docs/installation#macos-and-linux) - `npm` replacement
