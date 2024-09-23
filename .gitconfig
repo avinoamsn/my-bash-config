@@ -34,3 +34,5 @@
 [filter "gitignore"]           # TODO - WIP https://stackoverflow.com/a/16244970/5425359
 	clean = "sed '/#gitignore$/d'" # ignore files ending in " #gitignore" (used by .gitconfig above)
 	smudge = cat
+[push]
+	autoSetupRemote = true

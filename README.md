@@ -34,8 +34,17 @@ This repo contains a handful of files I use to customize my Zsh experience.
 
 ### Configure `git`/GitHub
 
-1. Install the [GitHub CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt) (`gh`)
-2. Authenticate with GitHub:
+1. [Update `git`](https://launchpad.net/~git-core/+archive/ubuntu/ppa) (this is required for the `autoSetupRemote` config to work):
+
+    ```sh
+    sudo add-apt-repository ppa:git-core/ppa -y
+    sudo apt-get update
+    sudo apt-get install git -y
+    git --version
+    ```
+
+2. Install the [GitHub CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt) (`gh`)
+3. Authenticate with GitHub:
 
     ```sh
     gh auth login
@@ -43,7 +52,7 @@ This repo contains a handful of files I use to customize my Zsh experience.
 
     Select the SSH authentication method, and follow the instructions.
 
-3. Instruct `gh` to use the new SSH key for verification (in addition to authentication):
+5. Instruct `gh` to use the new SSH key for verification (in addition to authentication):
 
     ```sh
     gh ssh-key add ~/.ssh/id_ed25519.pub --type signing
