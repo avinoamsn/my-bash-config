@@ -32,6 +32,25 @@ This repo contains a handful of files I use to customize my Zsh experience.
         PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash'
         ```
 
+### Configure `git`/GitHub
+
+1. Install the [GitHub CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt) (`gh`)
+2. Authenticate with GitHub:
+
+    ```sh
+    gh auth login
+    ```
+
+    Select the SSH authentication method, and follow the instructions.
+
+3. Instruct `gh` to use the new SSH key for verification (in addition to authentication):
+
+    ```sh
+    gh ssh-key add ~/.ssh/id_ed25519.pub --type signing
+    ```
+
+    **NOTE:** The provided `.gitconfig` file already includes the necessary configuration to use the SSH key for commit verification. If your SSH key has a different location/filename, update the `signingkey` value to reflect this.
+
 ### Working with WSL & VS Code
 
 Additional instructions for setting up the development environment.
@@ -39,7 +58,8 @@ Additional instructions for setting up the development environment.
 1. Install [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare)
    a. Copy the contents of the `terminal.json` file to the Windows Terminal settings (_Settings_ -> _Open JSON File_).
 2. Install [Ubuntu](https://www.microsoft.com/store/productId/9PDXGNCFSCZV?ocid=pdpshare)
-3. Install [VS Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q?ocid=pdpshare)
-4. Install the necessary fonts:
+3. Install [`wslu`](https://wslutiliti.es/wslu/install.html#ubuntu)
+4. Install [VS Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q?ocid=pdpshare)
+5. Install the necessary fonts:
     - [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md) - used by powerlevel10k
     - [Fira Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) - used by VS Code
