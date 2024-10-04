@@ -25,6 +25,8 @@
 	# open a PR's modified files in VSCode - https://stackoverflow.com/a/2233926/5425359
 	# NOTE - relies on `gh` to get the PR diff
 	open-pr-diff = ! gh pr diff --name-only | xargs -I {} code "{}"
+	# run ESLint on a PR's modified files
+	pr-lint = ! gh pr diff --name-only | xargs -I {} npx eslint --fix {}
 [commit]
 	gpgsign = true
 	signoff = true
