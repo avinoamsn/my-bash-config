@@ -25,12 +25,12 @@ eval "$(pyenv init -)"
 
 # setup python/virtualenv whenever the `env` dir OR a `.python-version` file is detected
 # TODO - investigate whether `virtualenv` w/ ohmyzsh's `virtualenvwrapper` plugin is a superior solution
-setup-python() {
+setup_python() {
 	if [ -d "env" ]; then # if `env` dir exists, activate the virtualenv
-		# echo "Activating virtual environment..."
+		echo "Activating virtual environment..."
 		source env/bin/activate
 	elif [ -n "$VIRTUAL_ENV" ] && [ ! -f .python-version ]; then # if there is no `env` dir and no `.python-version` file but there is an active virtualenv, deactivate it
-		# echo "Deactivating virtual environment..."
+		echo "Deactivating virtual environment..."
 		deactivate
 		export VIRTUAL_ENV=''
 	elif [[ -f .python-version ]]; then # if there is a `.python-version` file, install the Python version (if necessary) and create a virtualenv
@@ -47,8 +47,8 @@ setup-python() {
 	fi
 }
 
-add-zsh-hook chpwd setup-python # exec on `cd`
-setup-python                    # exec on shell initialization
+add-zsh-hook chpwd setup_python # exec on `cd`
+setup_python >/dev/null         # exec on shell initialization
 
 ##################
 # nvm setup
@@ -59,18 +59,26 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # setup node whenever `.nvmrc` is detected
-setup-node() {
+setup_node() {
 	local nvmrc_path
 	nvmrc_path="$(nvm_find_nvmrc)"
 
 	if [ -n "$nvmrc_path" ]; then
+		echo "\`.nvmrc\` found."
+
+		local node_version
+		node_version=$(cat "${nvmrc_path}")
 		local nvmrc_node_version
-		nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+		nvmrc_node_version=$(nvm version "${node_version}")
 
 		if [ "$nvmrc_node_version" = "N/A" ]; then
+			echo "Installing Node ${node_version} using nvm..."
 			nvm install
 		elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+			echo "Switching to Node ${node_version}..."
 			nvm use
+		else
+			echo "Node version ${node_version} already active."
 		fi
 	elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
 		echo "Reverting to nvm default version"
@@ -78,8 +86,8 @@ setup-node() {
 	fi
 }
 
-add-zsh-hook chpwd setup-node # exec on `cd`
-setup-node                    # exec on shell initialization
+add-zsh-hook chpwd setup_node # exec on `cd`
+setup_node >/dev/null         # exec on shell initialization
 
 ##################
 # p10k setup
