@@ -1,3 +1,5 @@
+**NOTE: This project has been replaced by my [dotfiles](https://github.com/avinoamsn/dotfiles) project. See that repository for updates.**
+
 # My Zsh Terminal Configuration
 
 This repo contains a handful of files I use to customize my Zsh experience.
